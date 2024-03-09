@@ -1,8 +1,18 @@
 def insertionSort(l):
-    for j in range(2, len(l)):
-        key = l[j]
-        i = j - 1
-        while i > 0 and l[i] > key:
-            l[i + 1] = l[i]
-            i -= 1
-        l[i + 1] = key
+    for i in range(1, len(l)):
+        key = l[i]
+        j = i - 1
+        while j >= 0 and l[j] > key:
+            l[j + 1] = l[j]
+            j -= 1
+        l[j + 1] = key
+        
+def insertionSortWithReturn(l):
+    for i in range(1, len(l)):
+        key = l[i]
+        j = i - 1
+        while j >= 0 and l[j] > key:
+            l[j + 1] = l[j]
+            j -= 1
+        l[j + 1] = key
+    return l

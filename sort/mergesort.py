@@ -1,18 +1,23 @@
-import math
-
 calls = 0
+def mergeSort(l: list, reverse=False, printMergeNum=False):
+    global calls
+    sortedList = mergesort(l, reverse)
+    if printMergeNum:
+        print(f"Number of merges: {calls}")
+        calls = 0
+    return sortedList
 
-def mergeSort(l, reverse=False):
+def mergesort(l: list, reverse=False):
     length = len(l)
     if length == 1:
         return l
     elif length > 1:
-        middle = math.floor(length / 2)
+        middle = length // 2
         if reverse:
-            return merge(mergeSort(l[middle:], reverse), mergeSort(l[:middle], reverse), reverse)
-        return merge(mergeSort(l[:middle]), mergeSort(l[middle:]), reverse)        
+            return merge(mergesort(l[middle:], reverse), mergesort(l[:middle], reverse), reverse)
+        return merge(mergesort(l[:middle]), mergesort(l[middle:]), reverse)        
         
-def merge(left, right, reverse=False):
+def merge(left: list, right: list, reverse=False):
     global calls
     calls += 1
     i = j = 0

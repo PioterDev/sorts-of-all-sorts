@@ -1,39 +1,28 @@
-class Stack: # a helper class for the iterative version
-    maxSize = 0
-    currentIndex = -1
-    stack = []
-    def __init__(self, maxSize: int) -> None:
-        self.stack = [0] * maxSize
-        self.maxSize = maxSize
-        self.currentIndex = -1
-    def push(self, el):
-        self.currentIndex += 1
-        self.stack[self.currentIndex] = el
-        return self
-    def pop(self):
-        self.currentIndex -= 1
-        return self.stack[self.currentIndex + 1]
-    def __str__(self) -> str:
-        return f"Max stack size: {self.maxSize}\nCurrent index: {self.currentIndex}\nElements: {self.stack}"
-      
-def quickSortRecursive(l, p, r):
+from additional import Stack
+
+def quickSortRecursive(l: list[int], p: int, r: int, reverse=False):
     if p < r:
-        q = partition(l, p, r)
-        quickSortRecursive(l, p, q - 1)
-        quickSortRecursive(l, q + 1, r)
+        q = partition(l, p, r, reverse)
+        quickSortRecursive(l, p, q - 1, reverse)
+        quickSortRecursive(l, q + 1, r, reverse)
 #Ah, the recursive version is so clean, yet risking a stack overflow... I love it
 
-def partition(l, p, r):
+def partition(l: list[int], p: int, r: int, reverse=False):
     pivot = l[r]
     i = p - 1
     for j in range(p, r):
-        if l[j] < pivot:
-            i += 1
-            l[i], l[j] = l[j], l[i]
+        if reverse:
+            if l[j] > pivot:
+                i += 1
+                l[i], l[j] = l[j], l[i]
+        else:
+            if l[j] < pivot:
+                i += 1
+                l[i], l[j] = l[j], l[i]
     l[i+1], l[r] = l[r], l[i+1]
     return i+1
 
-def quickSortIterative(l, p, r): 
+def quickSortIterative(l: list[int], p: int, r: int, reverse=False): 
     size = r - p + 1 #len(l) also works, but why would you use it?
     stack = Stack(size)
     stack.push(p)
@@ -41,7 +30,7 @@ def quickSortIterative(l, p, r):
     while stack.currentIndex >= 0:
         r = stack.pop()
         p = stack.pop()
-        q = partition(l, p, r) 
+        q = partition(l, p, r, reverse) 
         if q - 1 > p: 
             stack.push(p)
             stack.push(q - 1)

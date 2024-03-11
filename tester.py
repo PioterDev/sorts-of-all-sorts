@@ -1,10 +1,11 @@
 import time
-from .sort.bubblesort import bubbleSort
-from .sort.mergesort import mergeSort
-from .sort.heapsort import heapSort
-from .sort.quicksort import quickSortRecursive, quickSortIterative
-from .sort.insertionsort import insertionSort, insertionSortWithReturn
-from .sort.shellsort import shellSort
+from sort.bubblesort import bubbleSort
+from sort.mergesort import mergeSort
+from sort.heapsort import heapSort
+from sort.quicksort import quickSortRecursive, quickSortIterative
+from sort.insertionsort import insertionSort, insertionSortWithReturn
+from sort.shellsort import shellSort
+from rng import *
 
 def isSorted(l:list, reverse=False) -> bool:
     for i in range(1, len(l)):
@@ -22,73 +23,73 @@ def test(name: str, testList: list[int]) -> None:
             print("Merge sort")
             lMerge = testList.copy()
             start = time.time_ns()
-            sortedMerge = mergeSort(lMerge)
-            finish = (time.time_ns() - start)/(10 ** 9)
-            print(f"Time taken to sort: {finish}s")
-            return lMerge
+            sortedMerge = mergeSort(lMerge, printMergeNum=True)
+            finish = time.time_ns() - start
+            print(f"Time taken to sort: {finish/(10**9)}s")
+            return finish
         case "quick-recursive":
             print("Quick sort - recursive version")
             lQuick = testList.copy()
             start = time.time_ns()
             quickSortRecursive(lQuick, 0, len(lQuick) - 1)
-            finish = (time.time_ns() - start)/(10 ** 9)
-            print(f"Time taken to sort: {finish}s")
-            return lQuick
+            finish = time.time_ns() - start
+            print(f"Time taken to sort: {finish/(10**9)}s")
+            return finish
         case "heap":
             print("Heap sort")
             lHeap = testList.copy()
             start = time.time_ns()
             heapSort(lHeap)
-            finish = (time.time_ns() - start)/(10 ** 9)
-            print(f"Time taken to sort: {finish}s")
-            return lHeap
+            finish = time.time_ns() - start
+            print(f"Time taken to sort: {finish/(10**9)}s")
+            return finish
         case "bubble":
             print("Bubble sort")
             lBubble = testList.copy()
             start = time.time_ns()
             bubbleSort(lBubble)
-            finish = (time.time_ns() - start)/(10 ** 9)
-            print(f"Time taken to sort: {finish}s")
-            return lBubble
+            finish = time.time_ns() - start
+            print(f"Time taken to sort: {finish/(10**9)}s")
+            return finish
         case "quick-iterative":
             print("Quick sort - iterative version")
             lQuick = testList.copy()
             start = time.time_ns()
             quickSortIterative(lQuick, 0, len(lQuick) - 1)
-            finish = (time.time_ns() - start)/(10 ** 9)
-            print(f"Time taken to sort: {finish}s")
-            return lQuick
+            finish = time.time_ns() - start
+            print(f"Time taken to sort: {finish/(10**9)}s")
+            return finish
         case "insert":
             print("Insertion sort")
             lInsert = testList.copy()
             start = time.time_ns()
             insertionSort(lInsert)
-            finish = (time.time_ns() - start)/(10 ** 9)
-            print(f"Time taken to sort: {finish}s")
-            return lInsert
+            finish = time.time_ns() - start
+            print(f"Time taken to sort: {finish/(10**9)}s")
+            return finish
         case "tim":
             print("Python's Tim sort")
             lTim = testList.copy()
             start = time.time_ns()
             lTim.sort()
-            finish = (time.time_ns() - start)/(10 ** 9)
-            print(f"Time taken to sort: {finish}s")
-            return lTim
+            finish = time.time_ns() - start
+            print(f"Time taken to sort: {finish/(10**9)}s")
+            return finish
         case "shell":
             print("Shell sort - insertion sort as base, Hibbard's numbers as increments")
             lShell = testList.copy()
             start = time.time_ns()
             shellSort(lShell)
-            finish = (time.time_ns() - start)/(10 ** 9)
-            print(f"Time taken to sort: {finish}s")
-            return lShell
-        
+            finish = time.time_ns() - start
+            print(f"Time taken to sort: {finish/(10**9)}s")
+            return finish
+         
+#l = losowe(100_000_000)
 '''
-l = [random.randint(0, 100_000_000) for i in range(1_000_000)]
-testSortingAlgorithm("heap", l)
-testSortingAlgorithm("merge", l)
-testSortingAlgorithm("quick-recursive", l)
-testSortingAlgorithm("quick-iterative", l)
-testSortingAlgorithm("insert", l)
-testSortingAlgorithm("shell", l)
+test("heap", l)
+test("merge", l)
+test("quick-recursive", l)
+test("quick-iterative", l)
+test("insert", l)
+test("shell", l)
 '''

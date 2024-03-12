@@ -1,9 +1,11 @@
 calls = 0
-def mergeSort(l: list, reverse=False, printMergeNum=False):
+def mergeSort(l: list, reverse=False, printMergeNum=False, lang="eng"):
     global calls
     sortedList = mergesort(l, reverse)
     if printMergeNum:
-        print(f"Number of merges: {calls}")
+        if lang == "pl":
+            print(f"Liczba scaleń: {calls}")
+        else: print(f"Number of merges: {calls}")
         calls = 0
     return sortedList
 
@@ -15,7 +17,7 @@ def mergesort(l: list, reverse=False):
         middle = length // 2
         if reverse:
             return merge(mergesort(l[middle:], reverse), mergesort(l[:middle], reverse), reverse)
-        return merge(mergesort(l[:middle]), mergesort(l[middle:]), reverse)        
+        return merge(mergesort(l[:middle], reverse), mergesort(l[middle:], reverse), reverse)        
         
 def merge(left: list, right: list, reverse=False):
     global calls

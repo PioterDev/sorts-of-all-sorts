@@ -14,7 +14,7 @@ void printArray(int arr[], int n) {
     printf("\n");
 }
 
-void bin(unsigned int n) {
+void bin(unsigned int n) { //not used anywhere
     unsigned int i;
     for (i = 1 << 31; i > 0; i = i / 2)
         (n & i) ? printf("1") : printf("0");
@@ -29,7 +29,7 @@ int* copy(int* something, int size) {
     return copied;
 }
 
-int isSorted(int arr[], int n) {
+int isSorted(int arr[], int n) { //not used anywhere
     for(int i = 1; i < n; i++) {
         if(arr[i] < arr[i - 1])return -1;
     }

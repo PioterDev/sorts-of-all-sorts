@@ -10,8 +10,6 @@ void merge(int arr[], int left, int middle, int right) {
   
     int* Left = malloc(sizeof(int) * lenLeft);
     int* Right = malloc(sizeof(int) * lenRight);
-    //int Left[lenLeft];
-    //int Right[lenRight];
     for (i = 0; i < lenLeft; i++)Left[i] = arr[left + i]; 
     for (j = 0; j < lenRight; j++)Right[j] = arr[middle + 1 + j]; 
 

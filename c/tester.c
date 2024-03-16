@@ -9,8 +9,6 @@
 #include "quicksort.h"
 #include "shellsort.h"
 
-//typedef struct timespec time;
-
 long long test(char algorithm, int* testArr, int size, char printStuff) {
     LARGE_INTEGER start, end;
     switch (algorithm) {

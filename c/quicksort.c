@@ -5,7 +5,6 @@
 
 int partition(int* arr, int p, int r, int reverse) {
     int pivot = arr[r];
-    //printf("%d\n", pivot);
     int i  = p - 1;
     for(int j = p; j < r; j++){
         if(reverse) {

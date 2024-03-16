@@ -38,28 +38,13 @@ int hibbard(int k) {
 double hibbardInverse(int y) {
     return log2(y + 1);
 }
-//[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-//[0, 3, 6, 9]
-//[1, 4, 7]
-//[2, 5, 8]
+
 void shellSort(int arr[], int n, char print) {
     int k = (int) (floor(hibbardInverse(n))) - 4;
     if(k < 0)k = 2;
     int H = hibbard(k);
-    //printArray(arr, n);
     while(H >= 1) {
         if(print)printf("Current Hibbard's number: %d\n", H);
-        /* int** arrays = malloc(sizeof(int*) * H);
-        for(int i = 0; i < H; i++) {
-            arrays[i] = slice(arr, n, i, H);
-            insertionSort(arrays[i], lenSliced(n, i, H));
-        }
-        join(arr, n, H, arrays);
-        //printArray(arr, n);
-        for(int i = 0; i < H; i++) {
-            free(arrays[i]);
-        }
-        free(arrays); */
         for(int i = 0; i < H; i++) {
             insertionSort(arr, n, i, H);
         }

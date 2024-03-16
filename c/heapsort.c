@@ -2,23 +2,6 @@
 #include "additional.h"
 
 void heapify(int arr[], int n, int i) {
-    //Previous implementation (this one) is bad, removing it
-    /* for(int i = n/2; i > 0; i--) {
-        int parent = arr[i - 1];
-        int left = arr[2 * i - 1];
-        if(isInitial){
-            if(left > parent)swap(&arr[i-1], &arr[2*i-1]);
-            continue;
-        }
-        int right = arr[2 * i];
-        if(left > parent && right > parent) {
-            if(left > right)swap(&arr[2*i-1], &arr[i-1]);
-            else swap(&arr[2*i], &arr[i-1]);
-        }
-        else if(left > parent)swap(&arr[2*i-1], &arr[i-1]);
-        else if(right > parent)swap(&arr[2*i], &arr[i-1]);
-        else continue;
-    } */
     int largest = i, left = 2*i + 1, right = 2*i + 2;
     if(left < n && arr[i] < arr[left])largest = left;
     if(right < n && arr[largest] < arr[right])largest = right;
